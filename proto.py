@@ -1,20 +1,8 @@
 def quine_code_area():
-    # 발발..................................................우
-    # 우어어................................................어
-
     assert activated == 아
-
-    # activate(악)
-    # push_strict(0)
-    activate(아)
-
 
     while send_to_catch(안):
         assert activated == 아
-        # activate(악)
-        # push_strict(2)
-        # add()
-        # activate(아)
         push_strict(2)
         send_to(악)
 
@@ -26,17 +14,16 @@ def quine_code_area():
         # 바반받밤발밦밝밣밞
         #  0 2 3 4 5 6 7 8 9
 
-        # (0, 2, 5, 8, 3, 7, 4, 6, 9)
+        # 0 2 5 8 3 7 4 6 9
 
-        # duplicate()
         send_to(아)
 
-        aheui_eval('밞밞따빠밤다따밝타밝따박다') # push(48148)
+        aheui_eval('밞밞따빠밤다따밝타밝따박다') # push(48148) # 바
         swap()
         duplicate()
 
         # ord('바') v
-        if pop_is_zero():
+        if not pop_is_nonzero():
             pop()
             pop_print_char()
             continue
@@ -50,7 +37,7 @@ def quine_code_area():
         duplicate()
 
         # ord('반') v-2
-        if pop_is_zero():
+        if not pop_is_nonzero():
             pop()
             pop_print_char()
             continue
@@ -64,7 +51,7 @@ def quine_code_area():
         duplicate()
 
         # ord('발') v-5
-        if pop_is_zero():
+        if not pop_is_nonzero():
             pop()
             pop_print_char()
             continue
@@ -78,7 +65,7 @@ def quine_code_area():
         duplicate()
 
         # ord('밣') v-8
-        if pop_is_zero():
+        if not pop_is_nonzero():
             pop()
             pop_print_char()
             continue
@@ -92,7 +79,7 @@ def quine_code_area():
         duplicate()
 
         # ord('받') v-3
-        if pop_is_zero():
+        if not pop_is_nonzero():
             pop()
             pop_print_char()
             continue
@@ -106,7 +93,7 @@ def quine_code_area():
         duplicate()
 
         # ord('밝') v-7
-        if pop_is_zero():
+        if not pop_is_nonzero():
             pop()
             pop_print_char()
             continue
@@ -120,7 +107,7 @@ def quine_code_area():
         duplicate()
 
         # ord('밤') v-4
-        if pop_is_zero():
+        if not pop_is_nonzero():
             pop()
             pop_print_char()
             continue
@@ -134,7 +121,7 @@ def quine_code_area():
         duplicate()
 
         # ord('밦') v-6
-        if pop_is_zero():
+        if not pop_is_nonzero():
             pop()
             pop_print_char()
             continue
@@ -148,7 +135,7 @@ def quine_code_area():
         duplicate()
 
         # ord('밞') v-9
-        if pop_is_zero():
+        if not pop_is_nonzero():
             pop()
             pop_print_char()
             continue
@@ -160,8 +147,6 @@ def quine_code_area():
 
     assert activated == 안
     activate(악)
-
-    # duplicate()
 
     while pop_catch():
         aheui_eval('밞발따발따빠따밞밤다타') # push(50612) # 어
@@ -175,48 +160,22 @@ def quine_code_area():
     assert activated == 악
     activate(아)
 
-    # 방법 1: 9진법
-    if 1:
-        while duplicate_catch():
+    while duplicate_catch():
+        push_strict(2)
+        compare()
+        sub()
+
+        for __ in range(4):
+            push_strict(9)
+            mul()
+            swap()
+            duplicate()
             push_strict(2)
             compare()
             sub()
+            add()
 
-            for __ in range(4):
-                push_strict(9)
-                mul()
-                swap()
-                duplicate()
-                push_strict(2)
-                compare()
-                sub()
-                add()
-
-            pop_print_char()
-
-    # 방법 2: 8진법
-    if 0:
-        while duplicate_catch():
-            if pop_is_zero():
-                pop()
-                push_strict(5)
-                push_strict(2)
-                mul()
-            else:
-                # 44100 기준,
-                # 처음부터 2 큰 값 사용
-                for __ in range(4):
-                    push_strict(2)
-                    sub()
-                    push_strict(8)
-                    mul()
-                    add()
-
-                aheui_eval('밝밦따발따빠따') # push(44100)
-                add()
-
-            pop_print_char()
-
+        pop_print_char()
 
     push_strict(0)
     halt()
@@ -241,7 +200,6 @@ def install_global():
     global activate
     global send_to
     global pop_is_nonzero
-    global pop_is_zero
 
     global pop
     global pop_print_char
@@ -424,9 +382,6 @@ def install_global():
     def pop_is_nonzero():
         v = machine_storage[activated].pop()
         return v != 0
-
-    def pop_is_zero():
-        return not pop_is_nonzero()
 
     def pop():
         machine_storage[activated].pop()

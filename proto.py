@@ -7,9 +7,8 @@ def quine_code_area():
         send_to(악)
 
     assert activated == 아
-    activate(안)
 
-    while duplicate_catch():
+    while activate(안) and duplicate_catch():
         assert activated == 안
         # 바반받밤발밦밝밣밞
         #  0 2 3 4 5 6 7 8 9
@@ -126,21 +125,17 @@ def quine_code_area():
             pop_print_char()
             continue
 
-        push_strict(3)
-        sub()
         swap()
         push_strict(8)
         sub()
         swap()
-        duplicate()
+        push_strict(0)
 
         # ord('밞') v-9
         if not pop_is_nonzero():
             pop()
             pop_print_char()
             continue
-
-        assert False
 
     aheui_eval('밦발따빠따밣다밝따박다밣따') # push(50864) # 우
     aheui_eval('빠맣발박따맣맣')

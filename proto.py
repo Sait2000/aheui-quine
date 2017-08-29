@@ -141,21 +141,18 @@ def quine_code_area():
     aheui_eval('빠맣발박따맣맣')
 
     assert activated == 안
-    activate(악)
 
-    while pop_catch():
+    while activate(악) and pop_catch():
         aheui_eval('밞발따발따빠따밞밤다타') # push(50612) # 어
         pop_print_char()
 
     push_strict(5)
     push_strict(2)
     mul()
-    pop_print_char()
 
     assert activated == 악
-    activate(아)
 
-    while duplicate_catch():
+    while pop_print_char() and activate(아) and duplicate_catch():
         push_strict(2)
         compare()
         sub()
@@ -169,8 +166,6 @@ def quine_code_area():
             compare()
             sub()
             add()
-
-        pop_print_char()
 
     push_strict(0)
     halt()

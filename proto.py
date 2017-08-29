@@ -17,125 +17,74 @@ def quine_code_area():
 
         send_to(아)
 
-        aheui_eval('밞밞따빠밤다따밝타밝따박다') # push(48148) # 바
-        swap()
         duplicate()
 
-        # ord('바') v
-        if not pop_is_nonzero():
-            pop()
-            pop_print_char()
-            continue
-
+        duplicate()
         push_strict(2)
-        sub()
+        compare()
+        push_strict(2)
+        mul()
         swap()
-        push_strict(4)
-        add()
-        swap()
+
         duplicate()
-
-        # ord('반') v-2
-        if not pop_is_nonzero():
-            pop()
-            pop_print_char()
-            continue
-
         push_strict(3)
-        sub()
+        compare()
+        push_strict(2)
+        mul()
         swap()
+
+        duplicate()
         push_strict(4)
-        add()
+        compare()
+        push_strict(8)
+        mul()
         swap()
+
         duplicate()
-
-        # ord('발') v-5
-        if not pop_is_nonzero():
-            pop()
-            pop_print_char()
-            continue
-
-        push_strict(3)
-        sub()
+        push_strict(6)
+        compare()
+        push_strict(9)
+        mul()
         swap()
-        push_strict(7)
-        add()
-        swap()
+
         duplicate()
+        push_strict(8)
+        compare()
+        push_strict(2)
+        mul()
+        swap()
 
-        # ord('밣') v-8
-        if not pop_is_nonzero():
-            pop()
-            pop_print_char()
-            continue
-
+        duplicate()
         push_strict(5)
-        add()
+        compare()
+        push_strict(9)
+        mul()
         swap()
-        push_strict(8)
-        sub()
-        swap()
+
         duplicate()
-
-        # ord('받') v-3
-        if not pop_is_nonzero():
-            pop()
-            pop_print_char()
-            continue
-
-        push_strict(4)
-        sub()
-        swap()
-        push_strict(2)
-        add()
-        swap()
-        duplicate()
-
-        # ord('밝') v-7
-        if not pop_is_nonzero():
-            pop()
-            pop_print_char()
-            continue
-
-        push_strict(3)
-        add()
-        swap()
         push_strict(7)
+        compare()
+        push_strict(7)
+        mul()
+        swap()
+
+        push_strict(9)
+        compare()
+        push_strict(3)
+        mul()
+
         add()
-        swap()
-        duplicate()
-
-        # ord('밤') v-4
-        if not pop_is_nonzero():
-            pop()
-            pop_print_char()
-            continue
-
-        push_strict(2)
-        sub()
-        swap()
-        push_strict(2)
         add()
-        swap()
-        duplicate()
-
-        # ord('밦') v-6
-        if not pop_is_nonzero():
-            pop()
-            pop_print_char()
-            continue
-
-        swap()
-        push_strict(8)
         sub()
-        swap()
-        push_strict(0)
+        add()
+        add()
+        add()
+        add()
+        add()
+        aheui_eval('밞밞따빠밤다따밝타밝따박다') # push(48148) # 바
+        add()
 
-        # ord('밞') v-9
-        if not pop_is_nonzero():
-            pop()
-            pop_print_char()
-            continue
+        pop_print_char()
 
     aheui_eval('밦발따빠따밣다밝따박다밣따') # push(50864) # 우
     aheui_eval('빠맣발박따맣맣')

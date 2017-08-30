@@ -1,21 +1,41 @@
 def quine_code_area():
     assert activated == 아
+    push_strict(0)
+    push_strict(0)
+    send_to(안)
+    send_to(안)
 
-    while send_to_catch(안):
+    while duplicate_catch():
         assert activated == 아
-        push_strict(2)
+        aheui_eval('밞발따발따빠따밞밤다타') # push(50612) # 어
         send_to(악)
 
-    assert activated == 아
+        send_to(안)
+        activate(안)
+        swap()
+        push_strict(9)
+        mul()
+        swap()
+        duplicate()
+        push_strict(2)
+        compare()
+        sub()
+        add()
+        swap()
+        push_strict(2)
+        add()
+        duplicate()
+        push_strict(9)
+        compare()
+        if pop_is_nonzero():
+            pop()
+            send_to(앋)
+            push_strict(0)
+            push_strict(0)
+        else:
+            swap()
 
-    while activate(안) and duplicate_catch():
-        assert activated == 안
-        # 바반받밤발밦밝밣밞
-        #  0 2 3 4 5 6 7 8 9
-
-        # 0 2 5 8 3 7 4 6 9
-
-        send_to(아)
+        activate(아)
 
         duplicate()
 
@@ -84,39 +104,26 @@ def quine_code_area():
         aheui_eval('밞밞따빠밤다따밝타밝따박다') # push(48148) # 바
         add()
 
-        pop_print_char()
+        # pop_print_char()
+        send_to(알)
+
+    while activate(알) and pop_print_char_catch():
+        pass
 
     aheui_eval('밦발따빠따밣다밝따박다밣따') # push(50864) # 우
     aheui_eval('빠맣발박따맣맣')
 
-    assert activated == 안
-
-    while activate(악) and pop_catch():
-        aheui_eval('밞발따발따빠따밞밤다타') # push(50612) # 어
-        pop_print_char()
+    while activate(악) and pop_print_char_catch():
+        pass
 
     push_strict(5)
     push_strict(2)
     mul()
+    pop_print_char()
 
-    assert activated == 악
+    while activate(앋) and pop_print_char_catch():
+        pass
 
-    while pop_print_char() and activate(아) and duplicate_catch():
-        push_strict(2)
-        compare()
-        sub()
-
-        for __ in range(4):
-            push_strict(9)
-            mul()
-            swap()
-            duplicate()
-            push_strict(2)
-            compare()
-            sub()
-            add()
-
-    push_strict(0)
     halt()
 
 
@@ -158,6 +165,7 @@ def install_global():
 
     global send_to_catch
     global pop_catch
+    global pop_print_char_catch
     global duplicate_catch
     global swap_catch
     global compare_catch
@@ -381,6 +389,7 @@ def install_global():
 
     send_to_catch = catch_typeerror(send_to)
     pop_catch = catch_typeerror(pop)
+    pop_print_char_catch = catch_typeerror(pop_print_char)
     duplicate_catch = catch_typeerror(duplicate)
     swap_catch = catch_typeerror(swap)
     compare_catch = catch_typeerror(compare)
@@ -421,9 +430,9 @@ def generate_data_area(s):
         while len(vs) < 5:
             vs.append(cc % 9)
             cc //= 9
-        for v in reversed(vs):
+        for v in vs:
             res.append('바반받밤발밦밝밣밞'[v])
-    return ''.join(reversed(res))
+    return ''.join(res)
 
 
 if __name__ == '__main__':

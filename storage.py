@@ -1,18 +1,15 @@
+# coding: utf-8
+
 import collections
 import functools
 import operator
 
+try:
+    unichr_ = unichr
+except NameError:
+    unichr_ = chr
 
-__all__ = ['AheuiStorage', 'AheuiHalt']
-
-__all__ += [chr(a + ord('아')) for a in range(28)]
-
-(
-    아, 악, 앆, 앇, 안, 앉, 않,
-    앋, 알, 앍, 앎, 앏, 앐, 앑,
-    앒, 앓, 암, 압, 앖, 앗, 았,
-    앙, 앚, 앛, 앜, 앝, 앞, 앟,
-) = (chr(a + ord('아')) for a in range(28))
+storage_ids = [unichr_(a + ord(u'아')) for a in range(28)]
 
 
 def catch(err_class):
@@ -140,20 +137,15 @@ class AheuiPipe(AheuiStorageMixin):
 
 class AheuiStorage(object):
     def __init__(self):
-        self.activated = 아
+        self.activated = storage_ids[0] # 아
         self.output_buffer = []
         self.machine_storage = {
             storage_id: (
-                AheuiQueue() if storage_id == 앙
-                else AheuiPipe() if storage_id == 앟
+                AheuiQueue() if storage_id == storage_ids[21] # 앙
+                else AheuiPipe() if storage_id == storage_ids[27] # 앟
                 else AheuiStack()
             )
-            for storage_id in (
-                아, 악, 앆, 앇, 안, 앉, 않,
-                앋, 알, 앍, 앎, 앏, 앐, 앑,
-                앒, 앓, 암, 압, 앖, 앗, 았,
-                앙, 앚, 앛, 앜, 앝, 앞, 앟,
-            )
+            for storage_id in storage_ids
         }
 
     def activate(self, storage_id):
@@ -240,39 +232,39 @@ class AheuiStorage(object):
 
     def aheui_eval(self, commands, input_num=None, input_char=None):
         aheui_command_map = {
-            '다': self.add,
-            '따': self.mul,
-            '맣': self.pop_print_char,
-            '바': lambda: self.push_strict(0),
-            '박': lambda: self.push_strict(2),
-            '밖': lambda: self.push_strict(4),
-            '밗': lambda: self.push_strict(4),
-            '반': lambda: self.push_strict(2),
-            '밙': lambda: self.push_strict(5),
-            '밚': lambda: self.push_strict(5),
-            '받': lambda: self.push_strict(3),
-            '발': lambda: self.push_strict(5),
-            '밝': lambda: self.push_strict(7),
-            '밞': lambda: self.push_strict(9),
-            '밟': lambda: self.push_strict(9),
-            '밠': lambda: self.push_strict(7),
-            '밡': lambda: self.push_strict(9),
-            '밢': lambda: self.push_strict(9),
-            '밣': lambda: self.push_strict(8),
-            '밤': lambda: self.push_strict(4),
-            '밥': lambda: self.push_strict(4),
-            '밦': lambda: self.push_strict(6),
-            '밧': lambda: self.push_strict(2),
-            '밨': lambda: self.push_strict(4),
-            '방': lambda: self.push(input_num()),
-            '밪': lambda: self.push_strict(3),
-            '밫': lambda: self.push_strict(4),
-            '밬': lambda: self.push_strict(3),
-            '밭': lambda: self.push_strict(4),
-            '밮': lambda: self.push_strict(4),
-            '밯': lambda: self.push(input_char()),
-            '빠': self.duplicate,
-            '타': self.sub,
+            u'다': self.add,
+            u'따': self.mul,
+            u'맣': self.pop_print_char,
+            u'바': lambda: self.push_strict(0),
+            u'박': lambda: self.push_strict(2),
+            u'밖': lambda: self.push_strict(4),
+            u'밗': lambda: self.push_strict(4),
+            u'반': lambda: self.push_strict(2),
+            u'밙': lambda: self.push_strict(5),
+            u'밚': lambda: self.push_strict(5),
+            u'받': lambda: self.push_strict(3),
+            u'발': lambda: self.push_strict(5),
+            u'밝': lambda: self.push_strict(7),
+            u'밞': lambda: self.push_strict(9),
+            u'밟': lambda: self.push_strict(9),
+            u'밠': lambda: self.push_strict(7),
+            u'밡': lambda: self.push_strict(9),
+            u'밢': lambda: self.push_strict(9),
+            u'밣': lambda: self.push_strict(8),
+            u'밤': lambda: self.push_strict(4),
+            u'밥': lambda: self.push_strict(4),
+            u'밦': lambda: self.push_strict(6),
+            u'밧': lambda: self.push_strict(2),
+            u'밨': lambda: self.push_strict(4),
+            u'방': lambda: self.push(input_num()),
+            u'밪': lambda: self.push_strict(3),
+            u'밫': lambda: self.push_strict(4),
+            u'밬': lambda: self.push_strict(3),
+            u'밭': lambda: self.push_strict(4),
+            u'밮': lambda: self.push_strict(4),
+            u'밯': lambda: self.push(input_char()),
+            u'빠': self.duplicate,
+            u'타': self.sub,
         }
         for command in commands:
             aheui_command_map[command]()

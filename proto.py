@@ -141,7 +141,13 @@ def generate_data_area(s):
 
 
 if __name__ == '__main__':
-    from storage import *
+    from storage import AheuiHalt, AheuiStorage, storage_ids
+    (
+        아, 악, 앆, 앇, 안, 앉, 않,
+        앋, 알, 앍, 앎, 앏, 앐, 앑,
+        앒, 앓, 암, 압, 앖, 앗, 았,
+        앙, 앚, 앛, 앜, 앝, 앞, 앟,
+    ) = storage_ids
     s = AheuiStorage()
     with open('code_area.aheui', 'rb') as fr:
         code_area = fr.read().decode('utf-8')

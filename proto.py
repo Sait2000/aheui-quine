@@ -1,130 +1,130 @@
-def quine_code_area():
-    assert activated == 아
-    push_strict(0)
-    push_strict(0)
-    send_to(안)
-    send_to(안)
+def quine_code_area(s):
+    assert s.activated == 아
+    s.push_strict(0)
+    s.push_strict(0)
+    s.send_to(안)
+    s.send_to(안)
 
-    while duplicate_catch():
-        assert activated == 아
-        aheui_eval('밞발따발따빠따밞밤다타') # push(50612) # 어
-        send_to(악)
+    while s.duplicate_catch():
+        assert s.activated == 아
+        s.aheui_eval('밞발따발따빠따밞밤다타') # s.push(50612) # 어
+        s.send_to(악)
 
-        send_to(안)
-        activate(안)
-        swap()
-        push_strict(9)
-        mul()
-        swap()
-        duplicate()
-        push_strict(2)
-        compare()
-        sub()
-        add()
-        swap()
-        push_strict(2)
-        add()
-        duplicate()
-        push_strict(9)
-        compare()
-        if pop_is_nonzero():
-            pop()
-            send_to(앋)
-            push_strict(0)
-            push_strict(0)
+        s.send_to(안)
+        s.activate(안)
+        s.swap()
+        s.push_strict(9)
+        s.mul()
+        s.swap()
+        s.duplicate()
+        s.push_strict(2)
+        s.compare()
+        s.sub()
+        s.add()
+        s.swap()
+        s.push_strict(2)
+        s.add()
+        s.duplicate()
+        s.push_strict(9)
+        s.compare()
+        if s.pop_is_nonzero():
+            s.pop()
+            s.send_to(앋)
+            s.push_strict(0)
+            s.push_strict(0)
         else:
-            swap()
+            s.swap()
 
-        activate(아)
+        s.activate(아)
 
-        duplicate()
+        s.duplicate()
 
-        duplicate()
-        push_strict(2)
-        compare()
-        push_strict(2)
-        mul()
-        swap()
+        s.duplicate()
+        s.push_strict(2)
+        s.compare()
+        s.push_strict(2)
+        s.mul()
+        s.swap()
 
-        duplicate()
-        push_strict(3)
-        compare()
-        push_strict(2)
-        mul()
-        swap()
+        s.duplicate()
+        s.push_strict(3)
+        s.compare()
+        s.push_strict(2)
+        s.mul()
+        s.swap()
 
-        duplicate()
-        push_strict(4)
-        compare()
-        push_strict(8)
-        mul()
-        swap()
+        s.duplicate()
+        s.push_strict(4)
+        s.compare()
+        s.push_strict(8)
+        s.mul()
+        s.swap()
 
-        duplicate()
-        push_strict(6)
-        compare()
-        push_strict(9)
-        mul()
-        swap()
+        s.duplicate()
+        s.push_strict(6)
+        s.compare()
+        s.push_strict(9)
+        s.mul()
+        s.swap()
 
-        duplicate()
-        push_strict(8)
-        compare()
-        push_strict(2)
-        mul()
-        swap()
+        s.duplicate()
+        s.push_strict(8)
+        s.compare()
+        s.push_strict(2)
+        s.mul()
+        s.swap()
 
-        duplicate()
-        push_strict(5)
-        compare()
-        push_strict(9)
-        mul()
-        swap()
+        s.duplicate()
+        s.push_strict(5)
+        s.compare()
+        s.push_strict(9)
+        s.mul()
+        s.swap()
 
-        duplicate()
-        push_strict(7)
-        compare()
-        push_strict(7)
-        mul()
-        swap()
+        s.duplicate()
+        s.push_strict(7)
+        s.compare()
+        s.push_strict(7)
+        s.mul()
+        s.swap()
 
-        push_strict(9)
-        compare()
-        push_strict(3)
-        mul()
+        s.push_strict(9)
+        s.compare()
+        s.push_strict(3)
+        s.mul()
 
-        add()
-        add()
-        sub()
-        add()
-        add()
-        add()
-        add()
-        add()
-        aheui_eval('밞밞따빠밤다따밝타밝따박다') # push(48148) # 바
-        add()
+        s.add()
+        s.add()
+        s.sub()
+        s.add()
+        s.add()
+        s.add()
+        s.add()
+        s.add()
+        s.aheui_eval('밞밞따빠밤다따밝타밝따박다') # s.push(48148) # 바
+        s.add()
 
-        # pop_print_char()
-        send_to(알)
+        # s.pop_print_char()
+        s.send_to(알)
 
-    while activate(알) and pop_print_char_catch():
+    while s.activate(알) and s.pop_print_char_catch():
         pass
 
-    aheui_eval('밦발따빠따밣다밝따박다밣따') # push(50864) # 우
-    aheui_eval('빠맣발박따맣맣')
+    s.aheui_eval('밦발따빠따밣다밝따박다밣따') # s.push(50864) # 우
+    s.aheui_eval('빠맣발박따맣맣')
 
-    while activate(악) and pop_print_char_catch():
+    while s.activate(악) and s.pop_print_char_catch():
         pass
 
-    push_strict(5)
-    push_strict(2)
-    mul()
-    pop_print_char()
+    s.push_strict(5)
+    s.push_strict(2)
+    s.mul()
+    s.pop_print_char()
 
-    while activate(앋) and pop_print_char_catch():
+    while s.activate(앋) and s.pop_print_char_catch():
         pass
 
-    halt()
+    s.halt()
 
 
 def install_global():
@@ -441,7 +441,8 @@ if __name__ == '__main__':
         code_area = fr.read().decode('utf-8')
     aheui_eval(generate_data_area(code_area))
     try:
-        quine_code_area()
+        # XXX
+        quine_code_area(__import__(__name__))
     except AheuiHalt:
         pass
     else:

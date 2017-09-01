@@ -221,7 +221,7 @@ def install_global():
             return f
         return deco
 
-    class AheuiStorage(object):
+    class AheuiStorageMixin(object):
         @arithmetic(lambda b, a: int(b >= a))
         def compare(self): pass
 
@@ -240,7 +240,7 @@ def install_global():
         @arithmetic(operator.mod)
         def mod(self): pass
 
-    class AheuiStack(AheuiStorage):
+    class AheuiStack(AheuiStorageMixin):
         def __init__(self):
             self.storage = []
 
@@ -259,7 +259,7 @@ def install_global():
         def swap(self):
             self.storage[-2:] = self.storage[:-3:-1]
 
-    class AheuiQueue(AheuiStorage):
+    class AheuiQueue(AheuiStorageMixin):
         def __init__(self):
             self.storage = collections.deque()
 
@@ -281,7 +281,7 @@ def install_global():
             self.storage.appendleft(a)
             self.storage.appendleft(b)
 
-    class AheuiPipe(AheuiStorage):
+    class AheuiPipe(AheuiStorageMixin):
         def __init__(self):
             self.storage = []
 

@@ -7,7 +7,7 @@ def quine_code_area(s):
 
     while s.duplicate_catch():
         assert s.activated == 아
-        s.aheui_eval('밞발따발따빠따밞밤다타') # s.push(50612) # 어
+        s.aheui_eval('밞발따발따빠따밞밤다타')  # s.push(50612) # 어
         s.send_to(악)
 
         s.send_to(안)
@@ -101,7 +101,7 @@ def quine_code_area(s):
         s.add()
         s.add()
         s.add()
-        s.aheui_eval('밞밞따빠밤다따밝타밝따박다') # s.push(48148) # 바
+        s.aheui_eval('밞밞따빠밤다따밝타밝따박다')  # s.push(48148) # 바
         s.add()
 
         # s.pop_print_char()
@@ -110,7 +110,7 @@ def quine_code_area(s):
     while s.activate(알) and s.pop_print_char_catch():
         pass
 
-    s.aheui_eval('밦발따빠따밣다밝따박다밣따') # s.push(50864) # 우
+    s.aheui_eval('밦발따빠따밣다밝따박다밣따')  # s.push(50864) # 우
     s.aheui_eval('빠맣발박따맣맣')
 
     while s.activate(악) and s.pop_print_char_catch():

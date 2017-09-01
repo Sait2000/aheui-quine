@@ -2,12 +2,10 @@ import collections
 import functools
 import operator
 
-__all__ = []
+
+__all__ = ['AheuiStorage', 'AheuiHalt']
 
 __all__ += [chr(a + ord('아')) for a in range(28)]
-
-__all__ += 'AheuiStorage',
-__all__ += 'AheuiHalt',
 
 (
     아, 악, 앆, 앇, 안, 앉, 않,
@@ -15,6 +13,7 @@ __all__ += 'AheuiHalt',
     앒, 앓, 암, 압, 앖, 앗, 았,
     앙, 앚, 앛, 앜, 앝, 앞, 앟,
 ) = (chr(a + ord('아')) for a in range(28))
+
 
 def catch(err_class):
     def deco(f):
@@ -28,6 +27,7 @@ def catch(err_class):
         return f_catch
     return deco
 
+
 def guard_arity(arity):
     def deco(f):
         @functools.wraps(f)
@@ -37,6 +37,7 @@ def guard_arity(arity):
             return f(self, *args)
         return f_with_arity_check
     return deco
+
 
 def arithmetic(op):
     def deco(f_):
@@ -49,7 +50,10 @@ def arithmetic(op):
         return f
     return deco
 
-class AheuiHalt(Exception): pass
+
+class AheuiHalt(Exception):
+    pass
+
 
 class AheuiStorageMixin(object):
     @arithmetic(lambda b, a: int(b >= a))
@@ -70,6 +74,7 @@ class AheuiStorageMixin(object):
     @arithmetic(operator.mod)
     def mod(self): pass
 
+
 class AheuiStack(AheuiStorageMixin):
     def __init__(self):
         self.storage = []
@@ -88,6 +93,7 @@ class AheuiStack(AheuiStorageMixin):
     @guard_arity(2)
     def swap(self):
         self.storage[-2:] = self.storage[:-3:-1]
+
 
 class AheuiQueue(AheuiStorageMixin):
     def __init__(self):
@@ -111,6 +117,7 @@ class AheuiQueue(AheuiStorageMixin):
         self.storage.appendleft(a)
         self.storage.appendleft(b)
 
+
 class AheuiPipe(AheuiStorageMixin):
     def __init__(self):
         self.storage = []
@@ -129,6 +136,7 @@ class AheuiPipe(AheuiStorageMixin):
     @guard_arity(2)
     def swap(self):
         raise NotImplementedError
+
 
 class AheuiStorage(object):
     def __init__(self):
